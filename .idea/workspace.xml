@@ -4,13 +4,29 @@
     <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="92576b14-45f1-491d-8a87-fb717d12e625" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+    <list default="true" id="92576b14-45f1-491d-8a87-fb717d12e625" name="Default Changelist" comment="Initial.">
+      <change afterPath="$PROJECT_DIR$/src/model.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/item.rs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/mod.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index-2a0758fa2dbeaec5.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index-2a0758fa2dbeaec5_bg.wasm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Rust File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -59,6 +75,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Run shop-frontend" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
+      <option name="command" value="run --package shop-frontend --bin shop-frontend" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <option name="channel" value="DEFAULT" />
+      <option name="requiredFeatures" value="true" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <envs />
+      <option name="isRedirectInput" value="false" />
+      <option name="redirectInputPath" value="" />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Cargo.Run shop-frontend" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="RustProjectSettings">
     <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
@@ -71,8 +107,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1621623287232</updated>
-      <workItem from="1621623289259" duration="10514000" />
+      <workItem from="1621623289259" duration="21594000" />
     </task>
+    <task id="LOCAL-00001" summary="Initial.">
+      <created>1622314166264</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1622314166264</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -89,13 +133,17 @@
       </map>
     </option>
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Initial." />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial." />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/main.rs</url>
-          <line>72</line>
-          <option name="timeStamp" value="1" />
+          <url>file://$PROJECT_DIR$/src/pages/item.rs</url>
+          <line>66</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
