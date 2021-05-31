@@ -1,8 +1,8 @@
-use yew::{Component, ComponentLink, Html, Properties, html, ShouldRender};
-use yew::services::fetch::{FetchService, FetchTask, Request, Response};
-use yew::format::{Json, Nothing};
-use anyhow::Error;
 use crate::model;
+use anyhow::Error;
+use yew::format::{Json, Nothing};
+use yew::services::fetch::{FetchService, FetchTask, Request, Response};
+use yew::{html, Component, ComponentLink, Html, Properties, ShouldRender};
 
 #[derive(Clone, Debug, Eq, PartialEq, Properties)]
 pub struct Props {
@@ -21,7 +21,6 @@ pub struct Item {
 }
 
 impl Item {
-
     fn fetch_json(&mut self, id: u32) -> FetchTask {
         let callback = self.link.batch_callback(
             move |response: Response<Json<Result<model::Item, Error>>>| {

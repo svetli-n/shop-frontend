@@ -1,23 +1,19 @@
+use crate::pages::item::Item;
+use crate::pages::item_list::ItemList;
 use yew::prelude::*;
 use yew_router::prelude::*;
-use crate::pages::item::Item;
-mod pages;
 mod model;
-
+mod pages;
 
 #[derive(Switch, Clone, Debug)]
 pub enum AppRoute {
     #[to = "/items/{id}"]
     Item(u32),
+    #[to = "/items"]
+    ItemList(),
 }
 
-
-struct Model {
-}
-
-impl Model {
-
-}
+struct Model {}
 
 impl Component for Model {
     type Message = ();
@@ -41,14 +37,13 @@ impl Component for Model {
                 render = Router::render(|switch: AppRoute| {
                 match switch {
                     AppRoute::Item(id) => html!{<Item id = id/>},
+                    AppRoute::ItemList() => html!{<ItemList />},
                 }
                 })
             />
         }
     }
 }
-
-
 
 fn main() {
     wasm_logger::init(wasm_logger::Config::default());
