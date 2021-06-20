@@ -6,11 +6,13 @@ use yew::format::{Json, Nothing};
 use anyhow::Error;
 use yew::services::fetch::{FetchService, FetchTask, Request, Response};
 use crate::model;
+use crate::pages::basket::{Basket, LineItem};
 
 pub enum Msg {
     Search(String),
     FetchReady(Result<Vec<BTreeMap<String, String>>, Error>),
     AddToBasket(BTreeMap<String, String>),
+    RemoveFromBasket(String),
 }
 
 
@@ -18,6 +20,7 @@ pub struct ItemList {
     list: Vec<BTreeMap<String, String>>,
     link: ComponentLink<Self>,
     _ft: Option<FetchTask>,
+    basket: Basket,
 }
 
 impl ItemList {
@@ -43,8 +46,8 @@ impl ItemList {
 
     fn view_item(&self, item: BTreeMap<String, String>) -> Html {
        html! {
-           <div class="tile is-ancestor">
-               <div class="tile is-7 box is-warning has-background-grey-light">
+           <div class="tile ml-3">
+               <div class="tile is-6 box is-warning has-background-grey-light">
                     <div class="tile">
                     {"Specification"}
                     </div>
@@ -62,11 +65,49 @@ impl ItemList {
                     </ul>
                     </div>
                 </div>
-               <button class="button is-info is-light" onclick=self.link.callback(move |_| Msg::AddToBasket(item.clone()))>
+               <button class="button ml-3 is-info is-light" onclick=self.link.callback(move |_| Msg::AddToBasket(item.clone()))>
                 { format!("Add to basket") }
                </button>
            </div>
        }
+    }
+
+    fn view_basket(&self, items: BTreeMap<String, LineItem>) -> Html {
+        html! {
+            <div class="tile is-vertical">
+                <div>
+                {
+                        format!("Basket")
+                }
+                <ul>
+                {
+                    for items.into_iter().map(|item| {
+                        html! {
+                        <div class="tile">
+                            <li>
+                                { format!("id: {}, quantity: {}, price: {}", item.1.id, item.1.qty, item.1.price) }
+                            </li>
+                           <button class="button is-warning is-light" onclick=self.link.callback(move |_| {
+                            Msg::RemoveFromBasket(item.1.id.clone())
+                           })>
+                            { format!("Remove") }
+                           </button>
+                        </div>
+                        }
+                    })
+                }
+                </ul>
+                </div>
+                <div>
+                {
+                    format!("Total: {}", self.basket.total())
+                }
+                </div>
+               <button class="button is-primary is-light" >
+                    { format!("Buy") }
+               </button>
+            </div>
+        }
     }
 
 }
@@ -81,6 +122,7 @@ impl Component for ItemList {
             list: Vec::new(),
             link,
             _ft: None,
+            basket: Basket::new(),
         }
     }
 
@@ -113,8 +155,13 @@ impl Component for ItemList {
                 self.list = sorted;
             },
             Msg::AddToBasket(item) => {
-                log::info!("In basket: {:?}", item);
-            }
+                log::info!("Add to basket: {:?}", item);
+                self.basket.add(item);
+            },
+            Msg::RemoveFromBasket(id) => {
+                log::info!("Remove from basket: {}", id);
+                self.basket.remove(id);
+            },
         }
         true
     }
@@ -123,22 +170,34 @@ impl Component for ItemList {
         todo!()
     }
 
+
     fn view(&self) -> Html {
 
         html! {
-            <div class="tile is-vertical mt-6 ml-3">
-                <input
-                    class="tile is-3 box"
-                    placeholder="Search chemicals"
-                    // value=&self.state.value
-                    oninput=self.link.callback(|e: InputData| Msg::Search(e.value))
-                />
-                <div class="tile is-ancestor is-vertical mt-6 ml-3">
-                    {
-                        for self.list.iter().map(|d| {
-                            self.view_item(d.clone())
-                        })
-                    }
+            <div class="tile is-ancestor">
+                <div class="tile is-vertical mt-3 ml-3">
+                    <div class="tile is-parent">
+                        <div class="tile is-child is-3">
+                            <input
+                                class="input"
+                                type="text"
+                                placeholder="Search chemicals"
+                                oninput=self.link.callback(|e: InputData| Msg::Search(e.value))
+                            />
+                        </div>
+                        <div class="tile is-6">
+                        </div>
+                        <div class="tile id-child ml-6">
+                            { self.view_basket(self.basket.items.clone()) }
+                        </div>
+                    </div>
+                    <div class="tile is-vertical">
+                        {
+                            for self.list.iter().map(|d| {
+                                self.view_item(d.clone())
+                            })
+                        }
+                    </div>
                 </div>
             </div>
         }
