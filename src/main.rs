@@ -9,7 +9,7 @@ mod pages;
 pub enum AppRoute {
     #[to = "/items/{id}"]
     Item(u32),
-    #[to = "/items"]
+    #[to = "/"]
     ItemList(),
 }
 

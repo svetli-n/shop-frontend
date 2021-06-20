@@ -12,7 +12,7 @@ trunk serve
 
 ## Open: 
 
-http://127.0.0.1:8080/items
+http://127.0.0.1:8080
 
 ## Example output:
 
